@@ -23,6 +23,10 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        Job job2= new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
         assertNotEquals(job1.getId(), job2.getId(), .001);
     }
 
@@ -36,32 +40,40 @@ public class JobTest {
         assertTrue(job3.getPositionType() instanceof PositionType);
         assertTrue(job3.getCoreCompetency() instanceof CoreCompetency);
 
-        assertEquals("Product tester", job3.getName());
-        assertEquals("ACME", job3.getEmployer().getValue());
-        assertEquals("Desert", job3.getLocation().getValue());
-        assertEquals("Quality control", job3.getPositionType().getValue());
-        assertEquals("Persistence", job3.getCoreCompetency().getValue());
+        assertEquals(job3.getName().toString(), "Product tester");
+        assertEquals(job3.getEmployer().getValue(), "ACME");
+        assertEquals(job3.getLocation().getValue(),"Desert");
+        assertEquals(job3.getPositionType().getValue(), "Quality control");
+        assertEquals(job3.getCoreCompetency().getValue(),"Persistence");
     }
 //    The following test should return false. IT DOES. Do I leave the failing test in for grading?
     @Test
     public void testJobsForEquality() {
-        assertEquals(job1.getId(), job2.getId());
+//        assertNotEquals("IDs are equal", job1.getId() == job2.getId());
+        assertNotEquals(job1, job2);
+        assertFalse(job1.equals(job2));
         }
+
 
 
 @Test
     public void testToStringStartsAndEndsWithNewLine() {
-    String jobString =
-            "\n" +
-                    "ID: " + job.getId() + "\n" +
-                    "Name: " + job.getName() + "\n" +
-                    "Employer: " + job.getEmployer()+ "\n" +
-                    "Location: " + job.getLocation() + "\n" +
-                    "Position Type: " + job.getPositionType() + "\n" +
-                    "Core Competency: " + job.getCoreCompetency() + "\n";
+    String jobString = job.toString();
 
-    assertEquals(jobString.charAt(0), jobString.charAt(jobString.length()-1));
-}
+
+//            "\n" +
+//                    "ID: " + job.getId() + "\n" +
+//                    "Name: " + job.getName() + "\n" +
+//                    "Employer: " + job.getEmployer()+ "\n" +
+//                    "Location: " + job.getLocation() + "\n" +
+//                    "Position Type: " + job.getPositionType() + "\n" +
+//                    "Core Competency: " + job.getCoreCompetency() + "\n";
+assertEquals(jobString.charAt(0), '\n');
+assertEquals((jobString.charAt(jobString.length()-1)), '\n');
+
+//    assertEquals(jobString.charAt(0), jobString.charAt(jobString.length()-1));
+
+    }
 
 @Test
     public void testToStringContainsCorrectLabelsAndData() {

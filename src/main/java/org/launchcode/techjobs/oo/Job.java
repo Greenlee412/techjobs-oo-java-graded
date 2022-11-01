@@ -24,11 +24,11 @@ public class Job {
 
     public Job (String aName, Employer aEmployer, Location aLocation, PositionType aPositionType, CoreCompetency aCoreCompetency) {
         this();
-        name = aName;
-        employer = aEmployer;
-        location = aLocation;
-        positionType = aPositionType;
-        coreCompetency = aCoreCompetency;
+        this.name = aName;
+        this.employer = aEmployer;
+        this.location = aLocation;
+        this.positionType = aPositionType;
+        this.coreCompetency = aCoreCompetency;
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
@@ -39,12 +39,12 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id;
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 
 
@@ -116,14 +116,12 @@ public class Job {
             getCoreCompetency().setValue(NA);
         }
 
-    return
-    "\n" +
-    "ID: " + id + "\n" +
-    "Name: " + name + "\n" +
-    "Employer: " + employer + "\n" +
-    "Location: " + location + "\n" +
-    "Position Type: " + positionType + "\n" +
-    "Core Competency: " + coreCompetency + "\n";
+    return "\n" + "ID: " + this.getId() + "\n" +
+    "Name: " + this.getName() + "\n" +
+    "Employer: " + this.getEmployer() + "\n" +
+    "Location: " + this.getLocation() + "\n" +
+    "Position Type: " + this.getPositionType() + "\n" +
+    "Core Competency: " + this.getCoreCompetency() + "\n";
         }
 }
 
